@@ -10,7 +10,8 @@ import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
 
 const wallets = [new PhantomWalletAdapter()];
 // Use proxy RPC so wallet + "Load from wallet" work from any origin (no CORS)
-const rpc = import.meta.env.VITE_RPC_URL || 'https://333collection.vercel.app/api/rpc';
+const rawRpc = import.meta.env.VITE_RPC_URL || '/api/rpc';
+const rpc = rawRpc.startsWith('http') ? rawRpc : `${window.location.origin}${rawRpc}`;
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

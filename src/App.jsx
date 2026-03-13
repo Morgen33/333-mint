@@ -5,7 +5,8 @@ import { mint } from './doMint';
 import './App.css';
 
 // RPC and metadata: use proxy so "Load from wallet" works from any origin (no CORS)
-const RPC = import.meta.env.VITE_RPC_URL || 'https://333collection.vercel.app/api/rpc';
+const rawRpc = import.meta.env.VITE_RPC_URL || '/api/rpc';
+const RPC = rawRpc.startsWith('http') ? rawRpc : `${window.location.origin}${rawRpc}`;
 const METADATA_API = import.meta.env.VITE_METADATA_API || 'https://333collection.vercel.app';
 // Collection mint for filtering wallet NFTs (must match candy machine collection)
 const COLLECTION_MINT = 'DDA9DiC7ahLjiu4eUbvHdsD6Go9j4ar3JQeohegQ7Jzn';
