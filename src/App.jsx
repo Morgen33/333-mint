@@ -59,7 +59,7 @@ async function fetchWallet333Tokens(ownerAddress, rpcUrl) {
 }
 
 export default function App() {
-  const { wallet, publicKey: walletPubkey, connected } = useWallet();
+  const { wallet, publicKey: walletPubkey, connected, disconnect } = useWallet();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -176,8 +176,18 @@ export default function App() {
         <p className="section-label">Collection</p>
         <h1 className="card-title">The 333 Collection</h1>
         <p className="card-mint-line">0.04 SOL · 333 total</p>
-        <div className="wallet">
+        <div className="wallet wallet-row">
           <WalletMultiButton />
+          {connected && (
+            <button
+              type="button"
+              onClick={() => disconnect()}
+              className="disconnect-btn"
+              aria-label="Disconnect wallet"
+            >
+              Disconnect
+            </button>
+          )}
         </div>
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <button onClick={handleMint} disabled={!connected || loading}>
