@@ -7,6 +7,19 @@
   align-items: center;
   gap: 0;
 }
+
+.back-to-collection {
+  align-self: flex-start;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: #a1a1aa;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.back-to-collection:hover {
+  color: #fafafa;
+}
+
 .hero {
   text-align: center;
   margin-bottom: 1.75rem;

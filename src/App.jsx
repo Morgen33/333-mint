@@ -10,6 +10,8 @@ const RPC = rawRpc.startsWith('http') ? rawRpc : `${window.location.origin}${raw
 const METADATA_API = import.meta.env.VITE_METADATA_API || 'https://333collection.vercel.app';
 // Collection mint for filtering wallet NFTs (must match candy machine collection)
 const COLLECTION_MINT = 'DDA9DiC7ahLjiu4eUbvHdsD6Go9j4ar3JQeohegQ7Jzn';
+// Main 333 collection site (showcase / info)
+const MAIN_COLLECTION_URL = 'https://333collection.xyz/';
 
 // Fetch all 333 collection NFTs owned by wallet via Helius DAS getAssetsByOwner
 async function fetchWallet333Tokens(ownerAddress, rpcUrl) {
@@ -162,6 +164,9 @@ export default function App() {
 
   return (
     <div className="page">
+      <a href={MAIN_COLLECTION_URL} className="back-to-collection" rel="noopener noreferrer">
+        ← Back to 333 Collection
+      </a>
       <header className="hero">
         <p className="top-line">Blood Moon Launch</p>
         <h1 className="title">333</h1>
