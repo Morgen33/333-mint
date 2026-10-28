@@ -41,7 +41,7 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['@noble/hashes'],
-    exclude: ['ethereum-cryptography'],
+    exclude: ['ethereum-cryptography', '@solana/web3.js', '@metaplex-foundation/umi'],
     esbuildOptions: {
       define: {
         global: 'globalThis',

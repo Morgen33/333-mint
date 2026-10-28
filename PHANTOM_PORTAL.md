@@ -8,6 +8,7 @@ So Phantom recognizes the mint site as a verified app and doesn’t show “new 
 2. **Open the app** with the ID above (or create one and use this ID if it’s the same app).
 3. **Set up the domain**
    - **Set up → Allowed origins**: add `https://333landingpage.vercel.app` (and `https://333collection.xyz` if you use it).
+   - **Auth → Redirect URLs**: add `https://333landingpage.vercel.app/auth/callback` (and `https://333collection.xyz/auth/callback` if you use that domain). Required for Phantom SDK Google/Apple sign-in.
    - **Edit App Info → Public URL**: set to `https://333landingpage.vercel.app` (or your main mint URL).
 4. **Verify the domain**
    - In **Edit App Info**, use **Domain verification**.

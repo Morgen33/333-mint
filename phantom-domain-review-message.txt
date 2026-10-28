@@ -1,0 +1,12 @@
+My mint dApp at 333landingpage.vercel.app (and 333collection.vercel.app) still shows the "This dApp could be malicious" warning when users sign the mint transaction.
+
+We've already implemented what your docs and support (Joey) suggested:
+- Phantom signs first via signTransaction, then we add the candy machine mint signer and submit.
+- We simulate the transaction with sigVerify: false before sending to Phantom.
+- We use a legacy transaction (we also tried V0) to keep size predictable.
+
+Can you review our domain/transaction so the warning can be removed or adjusted?
+
+App: 333 The Collection (candy machine mint)
+Domain: 333landingpage.vercel.app
+Phantom App ID: 85950ca1-bdc2-421a-a43a-d4aa9c90afb9

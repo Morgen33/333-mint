@@ -75,6 +75,335 @@
   opacity: 0.85;
 }
 
+/* Mint card */
+.card.mint-card {
+  padding: 0;
+  overflow: hidden;
+  text-align: left;
+  border-color: rgba(159, 95, 95, 0.22);
+  box-shadow: 0 30px 80px -30px rgba(107, 45, 45, 0.55);
+}
+.mint-preview {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  background: #161616;
+  overflow: hidden;
+}
+@media (min-width: 700px) {
+  .card.mint-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+  .mint-preview {
+    aspect-ratio: 1;
+  }
+  .mint-preview::after {
+    display: none;
+  }
+  .mint-card-body {
+    justify-content: center;
+    padding: 2rem;
+  }
+}
+.card .mint-preview-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 1.2s ease, transform 6s ease-out;
+}
+.card .mint-preview-img-active {
+  opacity: 1;
+  transform: scale(1);
+}
+.mint-preview-skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #161616 0%, #222 50%, #161616 100%);
+  background-size: 200% 100%;
+  animation: mint-gallery-shimmer 1.4s ease-in-out infinite;
+}
+.mint-preview::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 35%;
+  background: linear-gradient(to top, rgba(18, 18, 18, 0.95), transparent);
+  pointer-events: none;
+}
+.mint-preview-badge {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.9rem;
+  z-index: 1;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f0c4c4;
+  background: rgba(60, 20, 20, 0.7);
+  border: 1px solid rgba(201, 122, 122, 0.3);
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+.mint-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+.mint-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.mint-stat-right {
+  text-align: right;
+}
+.mint-stat-label {
+  display: block;
+  margin-bottom: 0.15rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+.mint-stat-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fafafa;
+}
+.mint-stat-total {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #8a8a8a;
+}
+.mint-progress {
+  height: 4px;
+  margin-top: -0.35rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+}
+.mint-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #6b2d2d, #c96a5a);
+  transition: width 0.8s ease;
+}
+.mint-wallet {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #d4d4d4;
+}
+.mint-wallet-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #7da87d;
+  box-shadow: 0 0 8px rgba(125, 168, 125, 0.7);
+}
+.mint-wallet-address {
+  font-variant-numeric: tabular-nums;
+}
+.mint-wallet .mint-text-btn {
+  margin-left: auto;
+}
+.mint-order {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0.6rem 0.6rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025);
+}
+.mint-stepper {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.mint-stepper .mint-stepper-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #fafafa;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
+  touch-action: manipulation;
+}
+.mint-stepper .mint-stepper-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+}
+.mint-stepper-value {
+  min-width: 2rem;
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #fafafa;
+  font-variant-numeric: tabular-nums;
+}
+.mint-total {
+  text-align: right;
+  padding-right: 0.25rem;
+}
+.mint-total-value {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fafafa;
+  font-variant-numeric: tabular-nums;
+}
+.mint-primary-btn {
+  padding: 16px 28px;
+  font-size: 1.05rem;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #7a3333, #5e2626);
+  box-shadow: 0 10px 30px -10px rgba(160, 60, 50, 0.6);
+}
+.mint-primary-btn:hover:not(:disabled) {
+  background: linear-gradient(180deg, #8a3a3a, #6b2d2d);
+}
+.mint-text-btn {
+  width: auto;
+  padding: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: #a1a1aa;
+  background: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(161, 161, 170, 0.4);
+}
+.mint-text-btn:hover:not(:disabled) {
+  background: none;
+  color: #fafafa;
+}
+.mint-google-link {
+  align-self: center;
+  margin-top: -0.25rem;
+}
+.card .mint-status {
+  margin: 0;
+  opacity: 1;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  text-align: center;
+}
+.mint-status a {
+  margin-left: 0.4rem;
+  color: inherit;
+  text-decoration: underline;
+}
+.mint-status-error {
+  color: #c97a7a;
+}
+.mint-status-success {
+  color: #7da87d;
+}
+
+.viewer-stats {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  color: #d4d4d4;
+}
+
+.mint-gallery-card {
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.just-minted-card {
+  margin-top: 1.5rem;
+  width: 100%;
+}
+.just-minted-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+.just-minted-refresh {
+  flex-shrink: 0;
+  width: auto;
+  min-width: 6rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+.just-minted-item h3 {
+  font-size: 0.95rem;
+  margin: 0.5rem 0 0.35rem;
+}
+.just-minted-state {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #a1a1aa;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+}
+.just-minted-state-awakened {
+  color: #9f5f5f;
+  background: rgba(107, 45, 45, 0.25);
+}
+.just-minted-empty {
+  margin: 1rem 0 0;
+  color: #a1a1aa;
+  font-size: 0.9rem;
+  text-align: center;
+}
+.mint-gallery-item {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+.mint-gallery-skeleton {
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 420px;
+  margin: 0 auto 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+  background-size: 200% 100%;
+  animation: mint-gallery-shimmer 1.2s ease-in-out infinite;
+}
+.mint-gallery-placeholder {
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 420px;
+  margin: 0 auto 1rem;
+  border-radius: 8px;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a1a1aa;
+  font-size: 0.9rem;
+}
+@keyframes mint-gallery-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 /* Wallet row: connect button + disconnect when connected */
 .wallet.wallet-row {
   display: flex;
@@ -97,7 +426,38 @@
   border-color: #a1a1aa;
 }
 
-/* Wallet button: match mint style, hide Phantom/wallet icon */
+/* Phantom SDK connect button — match mint style */
+.wallet .wallet-connect-btn {
+  width: 100%;
+  background: #6b2d2d;
+  color: #fafafa;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+.wallet .wallet-connect-btn:hover {
+  background: #5a2525;
+  opacity: 0.95;
+}
+.wallet .wallet-connect-google {
+  background: #3c4043;
+}
+.wallet .wallet-connect-google:hover {
+  background: #2d3032;
+}
+.wallet .wallet-address {
+  font-size: 0.95rem;
+  color: #d4d4d4;
+  padding: 0.5rem 0;
+}
+
+/* Wallet button: match mint style, hide Phantom/wallet icon (legacy adapter) */
 .wallet .wallet-adapter-button,
 .wallet .wallet-adapter-button-trigger {
   width: 100% !important;
@@ -312,4 +672,173 @@
 }
 .success-link:hover {
   color: #8fb98f;
+}
+
+/* Mint result popup */
+.mint-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  animation: mint-modal-fade 0.2s ease-out;
+}
+.mint-modal {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  max-height: calc(100vh - 2.5rem);
+  overflow-y: auto;
+  padding: 2rem 1.5rem 1.5rem;
+  text-align: center;
+  background: #121212;
+  border: 1px solid rgba(125, 168, 125, 0.35);
+  border-radius: 14px;
+  box-shadow: 0 0 60px rgba(107, 45, 45, 0.35);
+  animation: mint-modal-pop 0.25s ease-out;
+}
+.mint-modal-failed {
+  border-color: rgba(201, 122, 122, 0.45);
+}
+.mint-modal-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  font-size: 1.4rem;
+  line-height: 1;
+  background: transparent;
+  color: #a1a1aa;
+}
+.mint-modal-close:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fafafa;
+}
+.mint-modal-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #9f5f5f;
+}
+.mint-modal-title {
+  margin: 0 0 1.25rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fafafa;
+}
+.mint-modal-failed .mint-modal-title {
+  color: #e0a0a0;
+}
+.mint-modal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.mint-modal-grid-single {
+  grid-template-columns: minmax(0, 280px);
+  justify-content: center;
+}
+.mint-modal-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mint-modal-media {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  margin: 0 0 0.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.mint-modal-name {
+  margin: 0 0 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fafafa;
+}
+.mint-modal-links {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+}
+.mint-modal-links a,
+.mint-modal-tx {
+  color: #7da87d;
+  text-decoration: underline;
+}
+.mint-modal-links a:hover,
+.mint-modal-tx:hover {
+  color: #8fb98f;
+}
+.mint-modal-note {
+  margin: 1rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #a1a1aa;
+}
+.mint-modal-failure {
+  margin-top: 0.25rem;
+  text-align: left;
+}
+.mint-modal-grid + .mint-modal-note + .mint-modal-failure {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.mint-modal-failure-title {
+  margin: 0 0 0.35rem;
+  font-weight: 600;
+  color: #e0a0a0;
+}
+.mint-modal-reason {
+  margin: 0 0 0.6rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #e5e5e5;
+}
+.mint-modal-charged {
+  margin: 0 0 0.6rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: #a1a1aa;
+}
+.mint-modal-tx {
+  display: inline-block;
+  margin-bottom: 0.6rem;
+  font-size: 0.85rem;
+}
+.mint-modal-details {
+  font-size: 0.75rem;
+  color: #71717a;
+}
+.mint-modal-details summary {
+  cursor: pointer;
+}
+.mint-modal-details code {
+  display: block;
+  margin-top: 0.4rem;
+  padding: 0.5rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+}
+.mint-modal-done {
+  margin-top: 1.25rem;
+}
+@keyframes mint-modal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes mint-modal-pop {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to { opacity: 1; transform: none; }
 }
